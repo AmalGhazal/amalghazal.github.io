@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amal Ghazal | Web Designer &amp; AI Graphic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0516;
+    --panel: #170C29;
+    --panel-2: #1E1236;
+    --line: #33224E;
+    --text: #F3EEFB;
+    --text-dim: #9C8FB8;
+    --grad1: #B347F0;
+    --grad2: #E8477D;
+    --grad3: #6E3FE0;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+  *, *::before, *::after { box-sizing: inherit; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C0516; --panel: #170C29; --panel-2: #1E1236; --line: #33224E;
+      --text: #F3EEFB; --text-dim: #9C8FB8; --grad1: #B347F0; --grad2: #E8477D; --grad3: #6E3FE0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C0516; --panel: #170C29; --panel-2: #1E1236; --line: #33224E;
+    --text: #F3EEFB; --text-dim: #9C8FB8; --grad1: #B347F0; --grad2: #E8477D; --grad3: #6E3FE0;
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(600px 400px at 12% 8%, rgba(179,71,240,0.20), transparent 60%),
+      radial-gradient(500px 380px at 92% 30%, rgba(232,71,125,0.14), transparent 60%),
+      radial-gradient(700px 500px at 50% 95%, rgba(110,63,224,0.16), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .cursor-glow {
+    position: fixed; inset: 0;
+    background: radial-gradient(560px 560px at var(--mx, 50%) var(--my, 30%), rgba(179,71,240,0.16), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+    transition: background .2s ease;
+  }
+  header, main, footer { position: relative; z-index: 1; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  h1, h2, h3, .heading-font { font-family: "Plus Jakarta Sans", "Inter", sans-serif; }
+  .grad-text {
+    background: linear-gradient(95deg, var(--grad1), var(--grad2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .grad-btn {
+    background: linear-gradient(95deg, var(--grad1), var(--grad2));
+    background-size: 160% 160%;
+    color: #fff; border: none; border-radius: 999px;
+    font-weight: 600; cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background-position .4s ease;
+  }
+  .grad-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 28px -10px rgba(179,71,240,0.55); background-position: 100% 100%; }
+  .grad-btn:active { transform: translateY(0) scale(0.98); }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky; top: 0; top: env(safe-area-inset-top, 0px);
+    z-index: 40;
+    background: rgba(12, 5, 22, 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; }
+  .brand { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 1.05rem; text-decoration: none; }
+  .navlinks { display: flex; gap: 26px; font-size: 0.9rem; font-weight: 500; }
+  .navlinks a { text-decoration: none; color: var(--text-dim); transition: color .2s ease; }
+  .navlinks a:hover, .navlinks a.active { color: var(--grad1); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 96px 0 88px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; position: relative; }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .avatar-ring, .badge { animation: none !important; }
+  }
+  .hero-kicker { color: var(--grad1); font-weight: 700; font-size: 0.98rem; margin: 0 0 6px; }
+  h1.hi { font-size: clamp(2.1rem, 5vw, 3.1rem); font-weight: 800; margin: 0 0 10px; line-height: 1.08; }
+  .hero-lede { color: var(--text-dim); font-size: 1rem; max-width: 42ch; margin: 0 0 26px; }
+  .hero-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .hero-cta .grad-btn { padding: 13px 26px; font-size: 0.94rem; }
+  .social-row { display: flex; gap: 10px; }
+  .social-row a {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 0.9rem; transition: border-color .2s ease, transform .2s ease;
+  }
+  .social-row a:hover { border-color: var(--grad1); transform: translateY(-3px) rotate(-8deg) scale(1.08); background: var(--panel-2); }
+
+  .avatar-wrap { position: relative; width: min(300px, 80vw); margin: 0 auto; }
+  .avatar-ring {
+    width: min(300px, 80vw); height: min(300px, 80vw); border-radius: 50%;
+    background: linear-gradient(135deg, var(--grad3), var(--grad1) 60%, var(--grad2));
+    background-size: 200% 200%;
+    padding: 5px;
+    box-shadow: 0 0 60px -8px rgba(179,71,240,0.55);
+    animation: ringspin 8s ease-in-out infinite, ringpulse 4s ease-in-out infinite;
+    transition: box-shadow .3s ease;
+  }
+  .avatar-wrap:hover .avatar-ring { box-shadow: 0 0 90px -6px rgba(179,71,240,0.75); }
+  @keyframes ringspin { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  @keyframes ringpulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+  .avatar-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: var(--panel-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 3.4rem;
+    color: var(--text); overflow: hidden;
+  }
+  .badge {
+    position: absolute; width: 46px; height: 46px; border-radius: 14px;
+    background: var(--panel-2); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    box-shadow: 0 8px 22px -6px rgba(0,0,0,0.5);
+    animation: bob 3.2s ease-in-out infinite;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .badge:hover { transform: scale(1.18) !important; border-color: var(--grad1); box-shadow: 0 10px 26px -6px rgba(179,71,240,0.6); }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  .badge.b1 { top: 4%; left: -4%; animation-delay: 0s; }
+  .badge.b2 { top: 8%; right: -6%; animation-delay: .6s; }
+  .badge.b3 { bottom: 6%; right: -2%; animation-delay: 1.2s; }
+  .badge.b4 { bottom: 16%; left: -8%; animation-delay: 1.8s; }
+
+  /* ---------- Section shell ---------- */
+  section { border-top: 1px solid var(--line); }
+  section.wrap { padding-top: 100px; padding-bottom: 100px; }
+  .section-title { font-size: 1.7rem; font-weight: 800; text-align: center; margin: 0 0 54px; }
+
+  /* ---------- About ---------- */
+  .about-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .about-inner h3 { font-size: 1.3rem; margin: 0 0 12px; }
+  .about-inner p { color: var(--text-dim); margin: 0 0 10px; }
+  .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
+  .pill {
+    display: flex; align-items: center; gap: 9px;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 10px 18px; font-size: 0.88rem; font-weight: 500;
+    background: var(--panel);
+    transition: transform .22s ease, border-color .22s ease, background .22s ease;
+  }
+  .pill:hover { transform: translateY(-3px); border-color: var(--grad1); background: var(--panel-2); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 46px; max-width: 820px; margin: 0 auto; }
+  .skill-row { display: flex; align-items: center; gap: 14px; padding: 6px 8px; border-radius: 10px; transition: background .2s ease, transform .2s ease; }
+  .skill-row:hover { background: var(--panel); transform: translateX(4px); }
+  .skill-row:hover .skill-icon { transform: scale(1.12) rotate(-4deg); border-color: var(--grad1); }
+  .skill-row:hover .dots span.on { animation: dotpop .5s ease forwards; }
+  .skill-row .dots span.on:nth-child(1) { animation-delay: 0s; }
+  .skill-row .dots span.on:nth-child(2) { animation-delay: .03s; }
+  .skill-row .dots span.on:nth-child(3) { animation-delay: .06s; }
+  .skill-row .dots span.on:nth-child(4) { animation-delay: .09s; }
+  .skill-row .dots span.on:nth-child(5) { animation-delay: .12s; }
+  .skill-row .dots span.on:nth-child(6) { animation-delay: .15s; }
+  .skill-row .dots span.on:nth-child(7) { animation-delay: .18s; }
+  .skill-row .dots span.on:nth-child(8) { animation-delay: .21s; }
+  @keyframes dotpop { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1); } }
+  .skill-icon {
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--panel-2); border: 1px solid var(--line); font-size: 0.95rem;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .skill-name { font-size: 0.86rem; color: var(--text-dim); width: 150px; flex-shrink: 0; }
+  .dots { display: flex; gap: 5px; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .dots span.on { background: linear-gradient(95deg, var(--grad1), var(--grad2)); }
+
+  /* ---------- Work ---------- */
+  .tabbar { display: flex; justify-content: center; gap: 10px; margin-bottom: 34px; flex-wrap: wrap; }
+  .tab-btn {
+    font-family: inherit; font-size: 0.86rem; font-weight: 600; color: var(--text-dim);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+    padding: 9px 20px; cursor: pointer; transition: all .2s ease;
+  }
+  .tab-btn:hover { color: var(--text); border-color: var(--grad1); transform: translateY(-2px); }
+  .tab-btn:active { transform: translateY(0) scale(0.96); }
+  .tab-btn.active { color: #fff; background: linear-gradient(95deg, var(--grad1), var(--grad2)); border-color: transparent; }
+
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 980px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .project-grid { grid-template-columns: 1fr; } }
+  .pcard {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    overflow: hidden; transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .pcard.hide { display: none; }
+  .pcard:hover { transform: translateY(-6px); border-color: var(--grad1); box-shadow: 0 22px 44px -18px rgba(179,71,240,0.4); }
+  .pcard:hover .shot-placeholder img,
+  .pcard:hover .shot-placeholder { transform: scale(1.04); }
+  .pcard:hover .ptags span { border-color: var(--grad1); color: var(--text); }
+  .pcard:hover .browser-url { color: var(--accent-hi, var(--text)); }
+  .browser-bar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; background: var(--panel-2); border-bottom: 1px solid var(--line);
+  }
+  .browser-bar .dot { width: 8px; height: 8px; border-radius: 50%; transition: transform .2s ease; }
+  .pcard:hover .browser-bar .dot { transform: scale(1.15); }
+  .browser-bar .dot:nth-child(1) { background: #E8477D; }
+  .browser-bar .dot:nth-child(2) { background: #F0C147; }
+  .browser-bar .dot:nth-child(3) { background: #47C97A; }
+  .browser-url {
+    margin-left: 6px; font-size: 0.72rem; color: var(--text-dim);
+    background: var(--bg); border-radius: 6px; padding: 3px 10px; flex: 1;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    transition: color .3s ease;
+  }
+  .shot-placeholder {
+    aspect-ratio: 16/10;
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.8rem; text-align: center; padding: 14px;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .shot-placeholder .mark { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 1.5rem; color: #fff; transition: transform .3s ease; }
+  .pcard:hover .shot-placeholder .mark { transform: scale(1.08); }
+
+  .shot-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pcard:hover .shot-placeholder img { transform: scale(1.04); }
+  .pcard-body { padding: 18px 20px 20px; }
+  .pcard-body h4 { margin: 0 0 8px; font-size: 1.02rem; font-weight: 700; }
+  .pcard-body p { margin: 0 0 14px; color: var(--text-dim); font-size: 0.88rem; }
+  .ptags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .ptags span { font-size: 0.72rem; color: var(--text-dim); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; transition: all .3s ease; }
+  .pbtns { display: flex; gap: 10px; }
+  .pbtn {
+    flex: 1; text-align: center; text-decoration: none;
+    font-size: 0.82rem; font-weight: 600; padding: 9px 0; border-radius: 999px;
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  }
+  .pbtn.solid { background: linear-gradient(95deg, var(--grad1), var(--grad2)); color: #fff; }
+  .pbtn.solid:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(179,71,240,0.6); filter: brightness(1.08); }
+  .pbtn.solid:active { transform: translateY(0) scale(0.97); }
+  .pbtn.ghost { border: 1px solid var(--line); color: var(--text-dim); }
+  .pbtn.ghost:hover { color: var(--text); border-color: var(--grad1); transform: translateY(-2px); }
+
+  /* ---------- AI Graphics ---------- */
+  .client-tabbar { display: flex; justify-content: center; gap: 8px; margin-bottom: 34px; flex-wrap: wrap; }
+
+  .album-slider { display: flex; align-items: center; gap: 14px; }
+  .slider-viewport { overflow: hidden; flex: 1; }
+  .slider-track { display: flex; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  .album-slide { flex: 0 0 100%; min-width: 0; }
+  .album-name { text-align: center; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 1.05rem; margin: 0 0 18px; color: var(--text-dim); }
+
+  .slider-arrow {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--panel); border: 1px solid var(--line); color: var(--text);
+    font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .2s ease;
+  }
+  .slider-arrow:hover { border-color: var(--grad1); background: var(--panel-2); transform: scale(1.08); }
+  .slider-arrow:active { transform: scale(0.94); }
+
+  .album-dots { display: flex; justify-content: center; gap: 8px; margin-top: 26px; }
+  .album-dots span {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--line);
+    cursor: pointer; transition: all .25s ease;
+  }
+  .album-dots span.active { background: linear-gradient(95deg, var(--grad1), var(--grad2)); width: 22px; border-radius: 4px; }
+
+  .graphics-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+  .graphics-grid.hide { display: none; }
+  .graphic-slot {
+    aspect-ratio: 1/1; border-radius: 10px;
+    border: 1.5px dashed var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-size: 0.74rem; text-align: center; padding: 8px;
+    background: var(--panel);
+    transition: border-color .25s ease, color .25s ease, transform .25s ease, background .25s ease;
+  }
+  .graphic-slot:hover { border-color: var(--grad1); color: var(--text); transform: scale(1.04); background: var(--panel-2); }
+
+
+  /* ---------- Figma Designs ---------- */
+  .figma-project { max-width: 1000px; margin: 0 auto 42px; }
+  .figma-project:last-child { margin-bottom: 0; }
+  .figma-project-title {
+    margin: 0 0 18px; text-align: center; font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.02rem; font-weight: 700; color: var(--text-dim);
+  }
+  .figma-grid { display: grid; gap: 14px; margin: 0 auto; }
+  .figma-grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+  .figma-grid-4 { grid-template-columns: repeat(4, 1fr); max-width: 1000px; }
+  .figma-card {
+    display: flex; align-items: center; justify-content: center; min-height: 230px;
+    padding: 10px; border-radius: 14px; overflow: hidden; text-decoration: none;
+    background: var(--panel); border: 1px solid var(--line);
+    box-shadow: 0 8px 24px -18px rgba(179,71,240,0.45);
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .figma-card img { width: 100%; height: 100%; max-height: 390px; object-fit: contain; display: block; border-radius: 8px; transition: transform .3s ease; }
+  .figma-card:hover { border-color: var(--grad1); transform: translateY(-4px); box-shadow: 0 16px 32px -18px rgba(179,71,240,0.65); }
+  .figma-card:hover img { transform: scale(1.02); }
+
+  /* ---------- Contact ---------- */
+  .contact-cards { display: flex; flex-direction: column; gap: 16px; max-width: 480px; margin: 0 auto; }
+  .contact-card {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 24px; text-decoration: none; color: var(--text);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .contact-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--grad1);
+    box-shadow: 0 16px 34px -16px rgba(179,71,240,0.5);
+  }
+  .contact-icon {
+    width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(95deg, var(--grad1), var(--grad2));
+    font-size: 1.3rem; color: #fff;
+    transition: transform .25s ease;
+  }
+  .contact-card:hover .contact-icon { transform: scale(1.1) rotate(-6deg); }
+  .contact-text { display: flex; flex-direction: column; gap: 3px; }
+  .contact-label { font-size: 0.78rem; color: var(--text-dim); }
+  .contact-value { font-size: 1rem; font-weight: 600; }
+
+  footer {
+    padding: 30px 0 calc(30px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    color: var(--text-dim); font-size: 0.85rem;
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; }
+    .avatar-wrap { order: -1; margin-bottom: 12px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    section.wrap { padding-top: 64px; padding-bottom: 64px; }
+    .graphics-grid { grid-template-columns: repeat(3, 1fr); }
+    .figma-grid-3, .figma-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .figma-card { min-height: 180px; }
+    .slider-arrow { width: 36px; height: 36px; font-size: 1.1rem; }
+  }
+  @media (max-width: 480px) {
+    .graphics-grid { grid-template-columns: repeat(2, 1fr); }
+    .figma-grid-3, .figma-grid-4 { grid-template-columns: 1fr; }
+    .figma-card { min-height: 160px; }
+  }
+  :focus-visible { outline: 2px solid var(--grad1); outline-offset: 3px; }
+
+  /* ---------- Image Lightbox ---------- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(5, 2, 10, 0.92);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .28s ease;
+  }
+  .lightbox.open { opacity: 1; pointer-events: auto; }
+  .lightbox img {
+    max-width: 92vw; max-height: 88vh; border-radius: 12px;
+    cursor: zoom-in; transition: transform .25s ease;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);
+    user-select: none; -webkit-user-drag: none;
+  }
+  .lightbox.zoomed img { cursor: zoom-out; }
+  .lightbox img.panning { cursor: grabbing; transition: none; }
+  .lb-close {
+    position: absolute; top: 22px; right: 26px;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--panel-2); border: 1px solid var(--line);
+    color: var(--text); font-size: 1.4rem; line-height: 1;
+    cursor: pointer; transition: all .2s ease; z-index: 2;
+  }
+  .lb-close:hover { border-color: var(--grad1); transform: scale(1.1); }
+  .lb-hint {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    font-size: 0.78rem; color: var(--text-dim);
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 6px 16px; border-radius: 999px; pointer-events: none;
+    transition: opacity .3s ease; white-space: nowrap;
+  }
+  .lightbox.zoomed .lb-hint { opacity: 0; }
+
+  .figma-card-empty {
+    border-style: dashed; color: var(--text-dim); font-size: 0.85rem;
+    cursor: default; min-height: 230px;
+  }
+  .figma-card-empty:hover { transform: none; box-shadow: 0 8px 24px -18px rgba(179,71,240,0.45); border-color: var(--line); }
+
+  .graphic-slot.filled { border-style: solid; padding: 0; cursor: zoom-in; overflow: hidden; }
+  .graphic-slot.filled img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .3s ease; }
+  .graphic-slot.filled:hover { transform: scale(1.04); border-color: var(--grad1); }
+  .graphic-slot.filled:hover img { transform: scale(1.07); }
+
+  /* ---------- Mobile fixes ---------- */
+  body { overflow-x: hidden; }
+  .menu-toggle {
+    display: none; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; color: var(--text); font-size: 1.15rem;
+    padding: 7px 13px; cursor: pointer; transition: border-color .2s ease;
+  }
+  .menu-toggle:hover { border-color: var(--grad1); }
+  @media (max-width: 780px) {
+    .wrap { padding: 0 18px; }
+    .menu-toggle { display: block; }
+    nav.wrap { position: relative; }
+    .navlinks {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: rgba(12, 5, 22, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 6px 0;
+    }
+    .navlinks.open { display: flex; }
+    .navlinks a { padding: 13px 26px; font-size: 1rem; }
+    .navlinks a:hover, .navlinks a.active { background: var(--panel); }
+    .hero { padding: 44px 0 56px; }
+    .hero-lede { font-size: 0.95rem; }
+    h1.hi { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+    .section-title { font-size: 1.4rem; margin-bottom: 36px; }
+    .avatar-ring { animation: none; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 14px; }
+    .skill-row { gap: 8px; padding: 6px 4px; }
+    .skill-icon { width: 28px; height: 28px; font-size: 0.78rem; border-radius: 7px; }
+    .skill-name { width: 104px; font-size: 0.76rem; }
+    .dots { gap: 3px; }
+    .dots span { width: 6px; height: 6px; }
+    .pcard-body { padding: 14px 16px 16px; }
+    .contact-card { padding: 16px 18px; gap: 13px; }
+    .contact-value { font-size: 0.9rem; word-break: break-all; }
+    .contact-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+    .hero-cta .grad-btn { padding: 12px 22px; font-size: 0.9rem; }
+    .album-slider { gap: 8px; }
+  }
+
+  /* ---------- Figma: Featured + Thumbnails ---------- */
+  .figma-context {
+    text-align: center; color: var(--text-dim); font-size: 0.9rem;
+    margin: -8px auto 22px; max-width: 560px;
+  }
+  .figma-showcase { max-width: 1000px; margin: 0 auto; }
+  .figma-hero {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 26px; min-height: 300px;
+    box-shadow: 0 8px 24px -18px rgba(179,71,240,0.45);
+    transition: border-color .25s ease;
+  }
+  .figma-hero:hover { border-color: var(--grad1); }
+  .hero-img {
+    max-width: 100%; max-height: 460px; width: auto; height: auto;
+    border-radius: 10px; display: block; cursor: zoom-in;
+    transition: transform .3s ease, opacity .25s ease;
+    box-shadow: 0 12px 30px -14px rgba(0,0,0,0.55);
+  }
+  .hero-img:hover { transform: scale(1.015); }
+  .figma-hero.switching .hero-img { opacity: 0; }
+  .hero-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(30, 18, 54, 0.9); border: 1px solid var(--line);
+    color: var(--text); font-size: 1.25rem; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s ease; z-index: 2;
+  }
+  .hero-nav:hover { border-color: var(--grad1); background: var(--panel-2); transform: translateY(-50%) scale(1.1); }
+  .hero-nav:active { transform: translateY(-50%) scale(0.94); }
+  .hero-nav.prev { left: 14px; }
+  .hero-nav.next { right: 14px; }
+  .figma-thumbs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px; }
+  .thumb {
+    width: 76px; height: 76px; padding: 4px; border-radius: 12px;
+    background: var(--panel); border: 1.5px solid var(--line); cursor: pointer;
+    transition: all .22s ease; flex-shrink: 0;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; display: block; }
+  .thumb:hover { transform: translateY(-3px); border-color: var(--grad1); }
+  .thumb.active {
+    border-color: transparent;
+    background: linear-gradient(var(--panel-2), var(--panel-2)) padding-box,
+                linear-gradient(95deg, var(--grad1), var(--grad2)) border-box;
+    box-shadow: 0 6px 18px -8px rgba(179,71,240,0.55);
+  }
+  @media (max-width: 780px) {
+    .figma-hero { min-height: 220px; padding: 16px; }
+    .hero-img { max-height: 340px; }
+    .thumb { width: 60px; height: 60px; }
+    .hero-nav { width: 34px; height: 34px; font-size: 1rem; }
+    .hero-nav.prev { left: 8px; } .hero-nav.next { right: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top">Amal Ghazal</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#top" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#figma">Figma</a>
+      <a href="#graphics">AI Graphics</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap" style="border-top:none;">
+    <div>
+      <p class="hero-kicker">Hi, I'm Amal</p>
+      <h1 class="hi">UI and Web Designer</h1>
+      <p class="hero-lede">I design and build modern, responsive websites using a range of platforms and technologies, including HTML, CSS, JavaScript, Figma, WordPress, Webflow, and Shopify. Alongside web design, I create AI-assisted graphics and visual content that support and strengthen the brands I work with.</p>
+      <div class="hero-cta">
+        <a class="grad-btn" href="mailto:amal.tayseer.ghazal@gmail.com" style="text-decoration:none; display:inline-block;">Get in touch</a>
+        <div class="social-row">
+          <a href="mailto:amal.tayseer.ghazal@gmail.com" title="Email">✉</a>
+          <a href="tel:+962780782608" title="Phone">☎</a>
+        </div>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-inner">AG</div>
+      </div>
+      <div class="badge b1" title="Webflow">🌀</div>
+      <div class="badge b2" title="Shopify">🛍</div>
+      <div class="badge b3" title="Figma">🎨</div>
+      <div class="badge b4" title="AI">✦</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-inner">
+      <h3>I'm <span class="grad-text">Amal Ghazal</span></h3>
+      <p>UI &amp; Web Designer based in Amman, with a background in Computer Information Systems.</p>
+      <p>I design and build modern, responsive websites from layout to live, functional platforms, working across technologies and platforms including HTML, CSS, JavaScript, Figma, WordPress, Webflow, and Shopify. I also create AI-assisted visuals and social content tailored to the brands I work with.</p>
+      <div class="pill-row">
+        <div class="pill">🌀 Webflow Development</div>
+        <div class="pill">🛍 Shopify E-Commerce</div>
+        <div class="pill">✦ AI Graphic Design</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-row"><div class="skill-icon">&lt;/&gt;</div><div class="skill-name">HTML / CSS / JS</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🌀</div><div class="skill-name">Webflow</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🛍</div><div class="skill-name">Shopify</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🎨</div><div class="skill-name">Figma</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🖌</div><div class="skill-name">Canva</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">📝</div><div class="skill-name">WordPress</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">✦</div><div class="skill-name">AI Design</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">◆</div><div class="skill-name">Claude &amp; Design</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🐘</div><div class="skill-name">PHP</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">📣</div><div class="skill-name">Meta Suite</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div>
+      <div class="skill-row"><div class="skill-icon">🐙</div><div class="skill-name">Git &amp; GitHub</div><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="work">
+    <h2 class="section-title">My Work</h2>
+    <div class="tabbar">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="webflow">Webflow</button>
+      <button class="tab-btn" data-filter="shopify">Shopify</button>
+      <button class="tab-btn" data-filter="wordpress">WordPress</button>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="pcard" data-cat="webflow">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">banqy.ae</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/d0NzSTRw/Screenshot-2026-09-22-232742.png" alt="banqy website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>Banqy: UAE Mortgage Comparison</h4>
+          <p>Bilingual mortgage comparison platform for 16+ UAE banks, with interactive calculators and full application flow.</p>
+          <div class="ptags"><span>AI</span><span>HTML/CSS/JS</span><span>Webflow</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://www.banqy.ae/" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="shopify">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">cupzi.net</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/rpZvYtGr/Screenshot-2026-09-22-233023.png" alt="Cupzi website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>Cupzi: Paper Cups &amp; Tableware</h4>
+          <p>Bilingual Shopify store, nine cup patterns, with Liquid edited directly via Cursor and Claude.</p>
+          <div class="ptags"><span>Cursor</span><span>Claude</span><span>Shopify</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://cupzi.net/" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="shopify">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">nahleh.net</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/g0tfB6yj/Screenshot-2026-09-22-232834.png" alt="Nahleh website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>Nahleh: Movement &amp; Wellness Care</h4>
+          <p>Arabic-first Shopify store for orthopedic and wellness products, with local payments and WhatsApp ordering.</p>
+          <div class="ptags"><span>Shopify</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://nahleh.net/" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="webflow">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">raizn.com/nawa-ar</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/bvVKF20G/Screenshot-2026-09-22-232853.png" alt="Nawa website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>Nawa: AI Employee, by Raizn</h4>
+          <p>Arabic landing page for Raizn's AI-employee product, covering the onboarding journey, pricing, and a savings calculator.</p>
+          <div class="ptags"><span>Webflow</span><span>Custom Code</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://raizn.com/nawa-ar" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="webflow">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">raizn.com</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/hGZH378X/Screenshot-2026-09-22-232938.png" alt="Raizn website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>Raizn: Growth Agency Website</h4>
+          <p>Main marketing site for Raizn's AI-driven growth infrastructure offering.</p>
+          <div class="ptags"><span>Webflow</span><span>Custom Code</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://raizn.com/" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="wordpress">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="browser-url">adan.care</span></div>
+        <div class="shot-placeholder"><img src="https://i.postimg.cc/TPNZHWjW/Screenshot-2026-09-22-233001.png" alt="adan.care website screenshot" loading="lazy"></div>
+        <div class="pcard-body">
+          <h4>adan.care: Personal Care E-Commerce</h4>
+          <p>Bilingual (EN/AR) WooCommerce store for a personal care dropshipping brand in Jordan, built on WordPress with Elementor and tuned for Core Web Vitals performance.</p>
+          <div class="ptags"><span>WordPress</span><span>WooCommerce</span><span>Bilingual EN/AR</span></div>
+          <div class="pbtns">
+            <a class="pbtn solid" href="https://adan.care/" target="_blank" rel="noopener">Visit Site</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="wrap" id="figma">
+    <h2 class="section-title">Figma Designs</h2>
+
+    <div class="figma-project">
+      <h3 class="figma-project-title">Figma Projects</h3>
+      <p class="figma-context">Website UI concepts — landing page and marketing-site screens designed in Figma.</p>
+      <div class="figma-showcase">
+        <div class="figma-hero">
+          <button class="hero-nav prev" aria-label="Previous screen">&#8249;</button>
+          <img class="hero-img" src="https://i.postimg.cc/KvNFDjWY/d7754e229277125-686250228d13a-(1).webp" data-full="https://i.postimg.cc/KvNFDjWY/d7754e229277125-686250228d13a-(1).webp" alt="Figma design 1" loading="lazy">
+          <button class="hero-nav next" aria-label="Next screen">&#8250;</button>
+        </div>
+        <div class="figma-thumbs">
+          <button class="thumb active" data-full="https://i.postimg.cc/KvNFDjWY/d7754e229277125-686250228d13a-(1).webp" aria-label="Figma design 1"><img src="https://i.postimg.cc/KvNFDjWY/d7754e229277125-686250228d13a-(1).webp" alt="Figma design 1" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/Wbnjwzy3/ba3b4e219641395-67b5916bbe889.webp" aria-label="Figma design 2"><img src="https://i.postimg.cc/Wbnjwzy3/ba3b4e219641395-67b5916bbe889.webp" alt="Figma design 2" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/5N31SyrN/6cb5da228926675-685c2fe2e4b2d.webp" aria-label="Figma design 3"><img src="https://i.postimg.cc/5N31SyrN/6cb5da228926675-685c2fe2e4b2d.webp" alt="Figma design 3" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/bNT89r5k/Raizn-Home-Page.png" aria-label="Raizn home page design"><img src="https://i.postimg.cc/bNT89r5k/Raizn-Home-Page.png" alt="Raizn home page design" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-project">
+      <h3 class="figma-project-title">Figma Project 2</h3>
+      <p class="figma-context">Product interface screens designed end-to-end in Figma.</p>
+      <div class="figma-showcase">
+        <div class="figma-hero">
+          <button class="hero-nav prev" aria-label="Previous screen">&#8249;</button>
+          <img class="hero-img" src="https://i.postimg.cc/hPrg1vYn/83b9fe216542933-678168b91145c.webp" data-full="https://i.postimg.cc/hPrg1vYn/83b9fe216542933-678168b91145c.webp" alt="Figma Project 2 screen 1" loading="lazy">
+          <button class="hero-nav next" aria-label="Next screen">&#8250;</button>
+        </div>
+        <div class="figma-thumbs">
+          <button class="thumb active" data-full="https://i.postimg.cc/hPrg1vYn/83b9fe216542933-678168b91145c.webp" aria-label="Figma Project 2 screen 1"><img src="https://i.postimg.cc/hPrg1vYn/83b9fe216542933-678168b91145c.webp" alt="Figma Project 2 screen 1" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/02fx0j49/47a7db216542933-678168b910493.webp" aria-label="Figma Project 2 screen 2"><img src="https://i.postimg.cc/02fx0j49/47a7db216542933-678168b910493.webp" alt="Figma Project 2 screen 2" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/FsZmVz6m/0cf8e5216542933-678168b911c30.webp" aria-label="Figma Project 2 screen 3"><img src="https://i.postimg.cc/FsZmVz6m/0cf8e5216542933-678168b911c30.webp" alt="Figma Project 2 screen 3" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/rFJcNsHM/f14816216542933-678168b910f22.webp" aria-label="Figma Project 2 screen 4"><img src="https://i.postimg.cc/rFJcNsHM/f14816216542933-678168b910f22.webp" alt="Figma Project 2 screen 4" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-project">
+      <h3 class="figma-project-title">Figma Project 3</h3>
+      <p class="figma-context">Mobile app flow — onboarding, sign-in, and employee management screens.</p>
+      <div class="figma-showcase">
+        <div class="figma-hero">
+          <button class="hero-nav prev" aria-label="Previous screen">&#8249;</button>
+          <img class="hero-img" src="https://i.postimg.cc/Rhd8K60N/sign-up.png" data-full="https://i.postimg.cc/Rhd8K60N/sign-up.png" alt="Sign up screen" loading="lazy">
+          <button class="hero-nav next" aria-label="Next screen">&#8250;</button>
+        </div>
+        <div class="figma-thumbs">
+          <button class="thumb active" data-full="https://i.postimg.cc/Rhd8K60N/sign-up.png" aria-label="Sign up screen"><img src="https://i.postimg.cc/Rhd8K60N/sign-up.png" alt="Sign up screen" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/Fzpq3dKk/sign-in-4.png" aria-label="Sign in screen 1"><img src="https://i.postimg.cc/Fzpq3dKk/sign-in-4.png" alt="Sign in screen 1" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/brgMkDvD/sign-in-3.png" aria-label="Sign in screen 2"><img src="https://i.postimg.cc/brgMkDvD/sign-in-3.png" alt="Sign in screen 2" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/PJycYpqJ/sign-in.png" aria-label="Sign in screen 3"><img src="https://i.postimg.cc/PJycYpqJ/sign-in.png" alt="Sign in screen 3" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/9Q03PpTg/add-employee-1.png" aria-label="Add employee screen"><img src="https://i.postimg.cc/9Q03PpTg/add-employee-1.png" alt="Add employee screen" loading="lazy"></button>
+          <button class="thumb" data-full="https://i.postimg.cc/kgGrNc8p/map-4.png" aria-label="Map screen"><img src="https://i.postimg.cc/kgGrNc8p/map-4.png" alt="Map screen" loading="lazy"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="wrap" id="graphics">
+    <h2 class="section-title">AI Graphic Posts</h2>
+    <div class="client-tabbar">
+      <button class="tab-btn active" data-client="travelkit">Travel Kit</button>
+      <button class="tab-btn" data-client="cupzi">Cupzi</button>
+      <button class="tab-btn" data-client="aamer">Aamer</button>
+      <button class="tab-btn" data-client="banqy">Banqy</button>
+      <button class="tab-btn" data-client="nahleh">Nahleh</button>
+      <button class="tab-btn" data-client="khat">Khat gallery</button>
+    </div>
+
+    <div class="album-slider">
+      <button class="slider-arrow prev" id="albumPrev" aria-label="Previous album">&#8249;</button>
+      <div class="slider-viewport">
+        <div class="slider-track" id="albumTrack">
+          <div class="album-slide" data-panel="travelkit">
+            <p class="album-name">Travel Kit</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/1z4JY75b/TRAVELKIT-CUPZI-(3).png"><img src="https://i.postimg.cc/1z4JY75b/TRAVELKIT-CUPZI-(3).png" alt="Travel Kit graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/7LbmQtYQ/TRAVELKIT-CUPZI-(5).png"><img src="https://i.postimg.cc/7LbmQtYQ/TRAVELKIT-CUPZI-(5).png" alt="Travel Kit graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/mg9rNBQs/TRAVELKIT-CUPZI-(9).png"><img src="https://i.postimg.cc/mg9rNBQs/TRAVELKIT-CUPZI-(9).png" alt="Travel Kit graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/vZnmLbWQ/TRAVELKIT-CUPZI-(8).png"><img src="https://i.postimg.cc/vZnmLbWQ/TRAVELKIT-CUPZI-(8).png" alt="Travel Kit graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/cJ6X5k4V/TRAVELKIT-CUPZI-(2).png"><img src="https://i.postimg.cc/cJ6X5k4V/TRAVELKIT-CUPZI-(2).png" alt="Travel Kit graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="album-slide" data-panel="cupzi">
+            <p class="album-name">Cupzi</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/wB30b4T0/TRAVELKIT-CUPZI-(6).png"><img src="https://i.postimg.cc/wB30b4T0/TRAVELKIT-CUPZI-(6).png" alt="Cupzi graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/FK1DnCsq/TRAVELKIT-CUPZI-(4).png"><img src="https://i.postimg.cc/FK1DnCsq/TRAVELKIT-CUPZI-(4).png" alt="Cupzi graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/yYdgRMQH/TRAVELKIT-CUPZI-1.webp"><img src="https://i.postimg.cc/yYdgRMQH/TRAVELKIT-CUPZI-1.webp" alt="Cupzi graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/rpzQYZwX/TRAVELKIT-CUPZI-(1).png"><img src="https://i.postimg.cc/rpzQYZwX/TRAVELKIT-CUPZI-(1).png" alt="Cupzi graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/xdqtFpTg/TRAVELKIT-CUPZI-(7).png"><img src="https://i.postimg.cc/xdqtFpTg/TRAVELKIT-CUPZI-(7).png" alt="Cupzi graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="album-slide" data-panel="aamer">
+            <p class="album-name">Aamer</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/rmH6PtkW/Aamer-(6).png"><img src="https://i.postimg.cc/rmH6PtkW/Aamer-(6).png" alt="Aamer graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/QNPs6vNs/Aamer-(4).png"><img src="https://i.postimg.cc/QNPs6vNs/Aamer-(4).png" alt="Aamer graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/y65Bf26K/Aamer-(2).png"><img src="https://i.postimg.cc/y65Bf26K/Aamer-(2).png" alt="Aamer graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/1RTPWbRy/Aamer.png"><img src="https://i.postimg.cc/1RTPWbRy/Aamer.png" alt="Aamer graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/BZyshRZq/Aamer-(1).png"><img src="https://i.postimg.cc/BZyshRZq/Aamer-(1).png" alt="Aamer graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="album-slide" data-panel="banqy">
+            <p class="album-name">Banqy</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/YSJfDpPC/Idea-1.png"><img src="https://i.postimg.cc/YSJfDpPC/Idea-1.png" alt="Banqy graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/QMRkYXzM/banqy-creatives-(6).png"><img src="https://i.postimg.cc/QMRkYXzM/banqy-creatives-(6).png" alt="Banqy graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/zf30P2Gr/banqy-creatives-(3).png"><img src="https://i.postimg.cc/zf30P2Gr/banqy-creatives-(3).png" alt="Banqy graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/N0LpPCjg/banqy-creatives-(1).png"><img src="https://i.postimg.cc/N0LpPCjg/banqy-creatives-(1).png" alt="Banqy graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/PqBzVt7r/banqy-creatives-(5).png"><img src="https://i.postimg.cc/PqBzVt7r/banqy-creatives-(5).png" alt="Banqy graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="album-slide" data-panel="nahleh">
+            <p class="album-name">Nahleh</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/SxggdbqV/nahleh-creatives-(4).png"><img src="https://i.postimg.cc/SxggdbqV/nahleh-creatives-(4).png" alt="Nahleh graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/VkKKgP1T/nahleh-creatives-(1).png"><img src="https://i.postimg.cc/VkKKgP1T/nahleh-creatives-(1).png" alt="Nahleh graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/NjddDvYd/nahleh-creatives-(3).png"><img src="https://i.postimg.cc/NjddDvYd/nahleh-creatives-(3).png" alt="Nahleh graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/W1558cjC/nahleh-creatives.png"><img src="https://i.postimg.cc/W1558cjC/nahleh-creatives.png" alt="Nahleh graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/pdpMYZNj/nahleh-creatives-(5).png"><img src="https://i.postimg.cc/pdpMYZNj/nahleh-creatives-(5).png" alt="Nahleh graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="album-slide" data-panel="khat">
+            <p class="album-name">Khat gallery</p>
+            <div class="graphics-grid">
+              <div class="graphic-slot filled" data-full="https://i.postimg.cc/sgTTmCym/khat.png"><img src="https://i.postimg.cc/sgTTmCym/khat.png" alt="Khat gallery graphic 1" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/T3tt0vGr/khat-(1).png"><img src="https://i.postimg.cc/T3tt0vGr/khat-(1).png" alt="Khat gallery graphic 2" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/7ZKK9rDS/khat-(2).png"><img src="https://i.postimg.cc/7ZKK9rDS/khat-(2).png" alt="Khat gallery graphic 3" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/mgmmjWRC/khat-(3).png"><img src="https://i.postimg.cc/mgmmjWRC/khat-(3).png" alt="Khat gallery graphic 4" loading="lazy"></div><div class="graphic-slot filled" data-full="https://i.postimg.cc/YCddRBkN/khat-(4).png"><img src="https://i.postimg.cc/YCddRBkN/khat-(4).png" alt="Khat gallery graphic 5" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="slider-arrow next" id="albumNext" aria-label="Next album">&#8250;</button>
+    </div>
+
+    <div class="album-dots" id="albumDots"></div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-cards">
+      <a class="contact-card" href="mailto:amal.tayseer.ghazal@gmail.com">
+        <span class="contact-icon">✉</span>
+        <span class="contact-text">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">amal.tayseer.ghazal@gmail.com</span>
+        </span>
+      </a>
+      <a class="contact-card" href="tel:+962780782608">
+        <span class="contact-icon">☎</span>
+        <span class="contact-text">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+962 780 782 608</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span class="brand">Amal Ghazal</span>
+  <span>© 2026 Amal Ghazal. All rights reserved.</span>
+</footer>
+
+<script>
+  function wireTabs(btnSelector, cardSelector, dataAttr) {
+    var buttons = document.querySelectorAll(btnSelector);
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var group = btn.parentElement.querySelectorAll('.tab-btn');
+        group.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var val = btn.getAttribute(dataAttr);
+        document.querySelectorAll(cardSelector).forEach(function (card) {
+          var cardVal = card.getAttribute(dataAttr === 'data-filter' ? 'data-cat' : 'data-panel');
+          if (val === 'all' || cardVal === val) { card.classList.remove('hide'); }
+          else { card.classList.add('hide'); }
+        });
+      });
+    });
+  }
+  wireTabs('#work .tab-btn', '.pcard', 'data-filter');
+
+  // Mobile hamburger menu
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var links = document.getElementById('navlinks');
+    if (!toggle || !links) return;
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.innerHTML = open ? '&times;' : '&#9776;';
+    });
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '&#9776;';
+      });
+    });
+  })();
+  // Album slider for AI Graphic Posts
+  (function () {
+    var track = document.getElementById('albumTrack');
+    var slides = document.querySelectorAll('.album-slide');
+    var tabs = document.querySelectorAll('#graphics .tab-btn');
+    var dotsWrap = document.getElementById('albumDots');
+    var prevBtn = document.getElementById('albumPrev');
+    var nextBtn = document.getElementById('albumNext');
+    var index = 0;
+
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', function () { goTo(i); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = dotsWrap.querySelectorAll('span');
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      tabs.forEach(function (t, ti) { t.classList.toggle('active', ti === index); });
+      dots.forEach(function (d, di) { d.classList.toggle('active', di === index); });
+    }
+
+    tabs.forEach(function (tab, i) { tab.addEventListener('click', function () { goTo(i); }); });
+    prevBtn.addEventListener('click', function () { goTo(index - 1); });
+    nextBtn.addEventListener('click', function () { goTo(index + 1); });
+
+    // Swipe support
+    var startX = null;
+    track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (dx > 40) goTo(index - 1);
+      else if (dx < -40) goTo(index + 1);
+      startX = null;
+    });
+  })();
+
+  // Scroll reveal
+  var revealSelectors = '.section-title, .about-inner, .pcard, .skill-row, .pill, .contact-card';
+  var revealEls = document.querySelectorAll(revealSelectors);
+  revealEls.forEach(function (el, i) {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i % 6) * 60 + 'ms';
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in-view'); });
+  }
+
+  // Cursor-reactive glow across the whole page
+  var glowEl = document.getElementById('cursorGlow');
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (glowEl && !prefersReducedMotion) {
+    window.addEventListener('mousemove', function (e) {
+      glowEl.style.setProperty('--mx', (e.clientX / window.innerWidth) * 100 + '%');
+      glowEl.style.setProperty('--my', (e.clientY / window.innerHeight) * 100 + '%');
+    });
+  }
+</script>
+
+
+
+<script>
+  // Figma featured + thumbnails: click a thumb or arrows to move through the flow
+  document.querySelectorAll('.figma-showcase').forEach(function (showcase) {
+    var heroWrap = showcase.querySelector('.figma-hero');
+    var heroImg = showcase.querySelector('.hero-img');
+    var thumbs = showcase.querySelectorAll('.thumb');
+    var idx = 0;
+
+    function set(i) {
+      idx = (i + thumbs.length) % thumbs.length;
+      var t = thumbs[idx];
+      heroWrap.classList.add('switching');
+      setTimeout(function () {
+        heroImg.src = t.querySelector('img').src;
+        heroImg.setAttribute('data-full', t.getAttribute('data-full'));
+        heroImg.alt = t.querySelector('img').alt;
+        heroWrap.classList.remove('switching');
+      }, 160);
+      thumbs.forEach(function (th, ti) { th.classList.toggle('active', ti === idx); });
+    }
+
+    thumbs.forEach(function (t, i) { t.addEventListener('click', function () { set(i); }); });
+    showcase.querySelector('.hero-nav.prev').addEventListener('click', function (e) { e.stopPropagation(); set(idx - 1); });
+    showcase.querySelector('.hero-nav.next').addEventListener('click', function (e) { e.stopPropagation(); set(idx + 1); });
+  });
+</script>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="Design preview">
+  <span class="lb-hint">Click image to zoom &middot; drag to pan &middot; Esc to close</span>
+</div>
+<script>
+  (function () {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lbImg');
+    var closeBtn = document.getElementById('lbClose');
+    var zoomed = false, scale = 2, panning = false, startX = 0, startY = 0, curX = 0, curY = 0;
+
+    function setTransform() {
+      lbImg.style.transform = 'translate(' + curX + 'px,' + curY + 'px) scale(' + (zoomed ? scale : 1) + ')';
+    }
+    function open(src) {
+      lbImg.src = src;
+      zoomed = false; scale = 2; curX = 0; curY = 0;
+      lb.classList.remove('zoomed');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTransform();
+    }
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.figma-card, .graphic-slot.filled, .hero-img').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var full = card.getAttribute('data-full');
+        if (full) open(full);
+      });
+      card.style.cursor = 'zoom-in';
+    });
+
+    lbImg.addEventListener('click', function (e) {
+      if (panning) return;
+      zoomed = !zoomed;
+      lb.classList.toggle('zoomed', zoomed);
+      if (zoomed) {
+        // zoom toward the clicked point
+        var r = lbImg.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        curX = -px * r.width * (scale - 1);
+        curY = -py * r.height * (scale - 1);
+      } else { curX = 0; curY = 0; }
+      setTransform();
+    });
+
+    // drag to pan when zoomed
+    lbImg.addEventListener('mousedown', function (e) {
+      if (!zoomed) return;
+      panning = true; lbImg.classList.add('panning');
+      startX = e.clientX - curX; startY = e.clientY - curY;
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!panning) return;
+      curX = e.clientX - startX; curY = e.clientY - startY;
+      setTransform();
+    });
+    window.addEventListener('mouseup', function () {
+      if (panning) { panning = false; lbImg.classList.remove('panning'); }
+    });
+
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+</script>
+</body>
+</html>
